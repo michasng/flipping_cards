@@ -8,8 +8,25 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Area3D",
+"class": &"Button3D",
+"language": &"GDScript",
+"path": "res://scenes/card/button-3d.gd"
+}, {
+"base": "Node3D",
+"class": &"Card",
+"language": &"GDScript",
+"path": "res://scenes/card/card.gd"
+}]
+_global_script_class_icons={
+"Button3D": "",
+"Card": ""
+}
+
 [application]
 
 config/name="Exploding Kittens"
+run/main_scene="res://scenes/play.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"

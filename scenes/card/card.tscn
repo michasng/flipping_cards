@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://be1w0ogxekynm"]
+
+[ext_resource type="Script" path="res://scenes/card/button-3d.gd" id="1_6xcdi"]
+[ext_resource type="Script" path="res://scenes/card/card.gd" id="1_dls7j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5v0g"]
+albedo_color = Color(0, 0.741176, 0.286275, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lf8xw"]
+material = SubResource("StandardMaterial3D_o5v0g")
+size = Vector2(0.635, 0.88)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svw4f"]
+albedo_color = Color(0.521569, 0.298039, 0.0117647, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s6hsx"]
+material = SubResource("StandardMaterial3D_svw4f")
+flip_faces = true
+size = Vector2(0.635, 0.88)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3qrp"]
+size = Vector3(0.635, 0.01, 0.88)
+
+[sub_resource type="Animation" id="Animation_e4geh"]
+resource_name = "flip"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, 0, 0, 1, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dbndv"]
+_data = {
+"flip": SubResource("Animation_e4geh")
+}
+
+[node name="Card" type="Node3D"]
+script = ExtResource("1_dls7j")
+
+[node name="FrontMeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_lf8xw")
+
+[node name="BackMeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_s6hsx")
+
+[node name="FrontOmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+omni_range = 1.0
+
+[node name="BackOmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+omni_range = 1.0
+
+[node name="Button3D" type="Area3D" parent="."]
+script = ExtResource("1_6xcdi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button3D"]
+shape = SubResource("BoxShape3D_e3qrp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dbndv")
+}
+
+[connection signal="hover_entered" from="Button3D" to="." method="_on_button_3d_hover_entered"]
+[connection signal="hover_exited" from="Button3D" to="." method="_on_button_3d_hover_exited"]
+[connection signal="pressed" from="Button3D" to="." method="_on_button_3d_pressed"]

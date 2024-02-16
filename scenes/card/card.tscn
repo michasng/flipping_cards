@@ -2,19 +2,15 @@
 
 [ext_resource type="Script" path="res://scenes/card/button-3d.gd" id="1_6xcdi"]
 [ext_resource type="Script" path="res://scenes/card/card.gd" id="1_dls7j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5v0g"]
-albedo_color = Color(0, 0.741176, 0.286275, 1)
+[ext_resource type="Material" uid="uid://dh0m7spr1i2y1" path="res://scenes/card/card_front_material.tres" id="2_grij2"]
+[ext_resource type="Material" uid="uid://ujsxrk46dklj" path="res://scenes/card/card_back_material.tres" id="3_abyc1"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lf8xw"]
-material = SubResource("StandardMaterial3D_o5v0g")
+material = ExtResource("2_grij2")
 size = Vector2(0.635, 0.88)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svw4f"]
-albedo_color = Color(0.521569, 0.298039, 0.0117647, 1)
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_s6hsx"]
-material = SubResource("StandardMaterial3D_svw4f")
+material = ExtResource("3_abyc1")
 flip_faces = true
 size = Vector2(0.635, 0.88)
 
@@ -38,6 +34,7 @@ _data = {
 }
 
 [node name="Card" type="Node3D"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_dls7j")
 
 [node name="FrontMeshInstance3D" type="MeshInstance3D" parent="."]

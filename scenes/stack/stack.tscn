@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dowlq6jv8ovm6"]
+
+[ext_resource type="Material" uid="uid://ujsxrk46dklj" path="res://scenes/card/card_back_material.tres" id="1_d5fkv"]
+[ext_resource type="PackedScene" uid="uid://be1w0ogxekynm" path="res://scenes/card/card.tscn" id="2_64o3f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0o3r"]
+material = ExtResource("1_d5fkv")
+size = Vector3(0.635, 0.5, 0.88)
+
+[node name="Stack" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = SubResource("BoxMesh_r0o3r")
+
+[node name="Card" parent="." instance=ExtResource("2_64o3f")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0.6, 0)
+is_face_up = false
